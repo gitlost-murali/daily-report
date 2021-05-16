@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Tokenization | Murali Manohar Daily Tracker</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Tokenization" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Why a single space tokenizer doesn’t help" />
+<meta property="og:description" content="Why a single space tokenizer doesn’t help" />
+<link rel="canonical" href="https://gitlost-murali.github.io/daily-report/slp100/2020/05/16/tokenization.html" />
+<meta property="og:url" content="https://gitlost-murali.github.io/daily-report/slp100/2020/05/16/tokenization.html" />
+<meta property="og:site_name" content="Murali Manohar Daily Tracker" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-16T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Why a single space tokenizer doesn’t help","url":"https://gitlost-murali.github.io/daily-report/slp100/2020/05/16/tokenization.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://gitlost-murali.github.io/daily-report/slp100/2020/05/16/tokenization.html"},"headline":"Tokenization","dateModified":"2020-05-16T00:00:00-05:00","datePublished":"2020-05-16T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/daily-report/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gitlost-murali.github.io/daily-report/feed.xml" title="Murali Manohar | Daily Tracker" /><link rel="shortcut icon" type="image/x-icon" href="/daily-report/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/daily-report/">Murali Manohar | Daily Tracker</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/daily-report/about/">About Me</a><a class="page-link" href="/daily-report/search/">Search</a><a class="page-link" href="/daily-report/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Tokenization</h1><p class="page-description">Why a single space tokenizer doesn't help</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-05-16T00:00:00-05:00" itemprop="datePublished">
+        May 16, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/daily-report/categories/#slp100">slp100</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#tokenization">Tokenization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#cases-to-handle-while-tokenizing">Cases to handle while tokenizing</a></li>
+<li class="toc-entry toc-h2"><a href="#subword-tokenization">Subword Tokenization</a></li>
+<li class="toc-entry toc-h2"><a href="#tokenization-schemes">Tokenization schemes</a></li>
+</ul>
+</li>
+</ul><h1 id="tokenization">
+<a class="anchor" href="#tokenization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tokenization</h1>
+
+<h2 id="cases-to-handle-while-tokenizing">
+<a class="anchor" href="#cases-to-handle-while-tokenizing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cases to handle while tokenizing</h2>
+
+<p>Instead of a formal definition, let’s understand what is needed from a tokenizer from the following examples:</p>
+
+<p>Punctuation based sentence tokenization: It is a general pattern to split text based on “(.) period” and consider the chunks as sentences. However that logic fails in the following instances:</p>
+
+<ol>
+  <li>Currency : $ 55,000.98</li>
+  <li>Names: K.L. John</li>
+  <li>Website urls: http://google.com</li>
+  <li>Abbreviations: C.D.C/M.S</li>
+</ol>
+
+<p><strong>Entity Recognition</strong></p>
+
+<p>A good tokenizer should recognize <code class="language-plaintext highlighter-rouge">New York</code>, <code class="language-plaintext highlighter-rouge">Walkie-Talkie</code> as single tokens. This tells us that tokenization is inherently tied-up with Entity Recognition.</p>
+
+<p><strong>Clitic</strong></p>
+
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>Clitic: Part of a word that can't stand on its own &amp; can only occur when attached with other words. Ex: `'re` in You're 
+</div>
+
+<p>A good tokenizer must be able convert a clitic back to a meaningful word. For example: Tokenizing <code class="language-plaintext highlighter-rouge">you're</code> to two tokens <code class="language-plaintext highlighter-rouge">you</code>, <code class="language-plaintext highlighter-rouge">are</code>.</p>
+
+<p><strong>Dealing with Ambiguities</strong></p>
+
+<p>Apostrophe usage in different cases:</p>
+
+<ol>
+  <li>Genitive marker -&gt; Book’s cover</li>
+  <li>Qoutative marker -&gt; ‘Alright, move now’, she said.</li>
+  <li>Clitics -&gt; “They’re”</li>
+</ol>
+
+<p><strong>Complexities in different languages</strong></p>
+
+<p>Languages like Japanese, Thai and Chinese don’t use space to mark word boundaries. Especially, in Chinese language, a token is made up of characters which themselves carry a meaning (Morpheme). Because of this property, a sentence can be perceived differently by tokenizing it differently. Also, it becomes increasingly difficult to maintain a vocabulary when different character combinations are possible. Therefore, most NLP applications use Character-Based tokenization.</p>
+
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>Morpheme: Morpheme is a smallest unit of a word that carries meaning.
+</div>
+
+<p>Ex: Incoming -&gt; In, come, -ing</p>
+
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>It is important to note that Morpheme sometimes doesn't exist alone compared to word which always exists alone.
+</div>
+
+<h2 id="subword-tokenization">
+<a class="anchor" href="#subword-tokenization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Subword Tokenization</h2>
+
+<p>As the list gets exhaustive, it becomes increasingly tough to build a tokenizer that handles all such cases. And since tokenization is just the first step of an NLP application, it must be fast.</p>
+
+<p>Considering all the situations above, research fraternity is increasingly adopting a third-way (apart from word/char based tokenization) i.e Sub-Word Segmentation.</p>
+
+<p>A Subword tokenizer statistically fragments a token into subtokens, which may or may not make sense. This helps in handling new words in inference. If training set only had <code class="language-plaintext highlighter-rouge">low</code> and system received the word <code class="language-plaintext highlighter-rouge">lower</code>, it is helpful to break it into <code class="language-plaintext highlighter-rouge">low</code> + <code class="language-plaintext highlighter-rouge">er</code>.</p>
+
+<h2 id="tokenization-schemes">
+<a class="anchor" href="#tokenization-schemes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tokenization schemes</h2>
+
+<p>Most subword tokenization schemes usually have two parts,</p>
+
+<ol>
+  <li>Token learner : Induces a vocabulary based on the training corpus.</li>
+  <li>Token Segmenter: Splits a sentence into tokens in the learned vocabulary.</li>
+</ol>
+
+<p>BPE, Unigram Language Modeling and WordPiece are some of the widely adopted tokenization methods.</p>
+
+<p>Let’s understand the algo behind BPE (how a vocabulary is induced) tomorrow.</p>
+
+  </div><a class="u-url" href="/daily-report/slp100/2020/05/16/tokenization.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/daily-report/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/daily-report/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/daily-report/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Writing down what I read/learn everyday</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gitlost-murali" title="gitlost-murali"><svg class="svg-icon grey"><use xlink:href="/daily-report/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/gitlostmurali" title="gitlostmurali"><svg class="svg-icon grey"><use xlink:href="/daily-report/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
