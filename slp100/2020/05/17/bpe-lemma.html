@@ -77,7 +77,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      4 min read
     
 </span></p>
 
@@ -94,7 +94,7 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#byte-pair-encoding">Byte Pair Encoding</a>
+<li class="toc-entry toc-h1"><a href="#byte-pair-encoding--lemmatization">Byte Pair Encoding &amp; Lemmatization</a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#workings-of-bpe">Workings of BPE</a>
 <ul>
@@ -103,12 +103,14 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#lemmatization">Lemmatization</a></li>
+<li class="toc-entry toc-h2"><a href="#normalization">Normalization</a></li>
 </ul>
 </li>
-</ul><h1 id="byte-pair-encoding">
-<a class="anchor" href="#byte-pair-encoding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Byte Pair Encoding</h1>
+</ul><h1 id="byte-pair-encoding--lemmatization">
+<a class="anchor" href="#byte-pair-encoding--lemmatization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Byte Pair Encoding &amp; Lemmatization</h1>
 
-<p>Out of the 3 tokenization methods I mentioned last time (BPE, Unigram Language Modeling &amp; WordPiece), BPE is the most common and easy to understand.</p>
+<p>I. Out of the 3 tokenization methods I mentioned last time (BPE, Unigram Language Modeling &amp; WordPiece), BPE is the most common and easy to understand.
+II. Lemmatization is often used in Information Extraction, Retrieval since search systems must behave similarly to morphological variants of the same word. (Cricketer, Cricket, Dinners, Dinner, etc.)</p>
 
 <h2 id="workings-of-bpe">
 <a class="anchor" href="#workings-of-bpe" aria-hidden="true"><span class="octicon octicon-link"></span></a>Workings of BPE</h2>
@@ -210,6 +212,47 @@ lo: 7
 <h2 id="lemmatization">
 <a class="anchor" href="#lemmatization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lemmatization</h2>
 
+<p>Lemmatization is the task of identifying whether two words come from the same root word. 
+For ex,</p>
+
+<p>i) <code class="language-plaintext highlighter-rouge">is, are, am</code> belong to the root <code class="language-plaintext highlighter-rouge">be</code>.</p>
+
+<p>ii) <code class="language-plaintext highlighter-rouge">memories, memory</code> has the root word <code class="language-plaintext highlighter-rouge">memory</code>.</p>
+
+<p>There are two ways to do lemmatization.</p>
+
+<ol>
+  <li>
+    <p>Morphological Parsing (Sophisticated &amp; complex): Morphology is the study of how a word is formed by combined smaller meaning-bearer units often called Morphemes. Morphemes can be classified into two forms. a. <strong>Stems</strong> b. <strong>Affixes</strong>.
+ a. Stems: Central morphemes that supply the main meaning of the word
+ b. Affixes: Additional part of the word.</p>
+
+    <p>Ex: Cars -&gt; Car + s</p>
+  </li>
+  <li>
+    <p>Stemming (Simple yet rudimentary): Stemming logic is mostly based on chopping off the affixes of a word. Porter-Stemmer is a rule-based system where input is processed through a series of steps (cascade).</p>
+  </li>
+</ol>
+
+<p>Sample rules:</p>
+
+<p>ATIONAL -&gt; ATE (Relational -&gt; Relate)
+ING -&gt; “” If Stem contains vowel (Monitoring -&gt; Monitor)
+SSES -&gt; SS (Grasses -&gt; Grass, Kisses -&gt; Kiss)</p>
+
+<p>Stemming is often prone to errors with the only advantage as being faster.</p>
+
+<h2 id="normalization">
+<a class="anchor" href="#normalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normalization</h2>
+
+<p>Normalization is the process of converting words to a standard format. This is useful in Information retrieval systems. For ex: US &amp; USA represent the country United States. Wow, Wowww mean Wow.</p>
+
+<p>Case-Folding: Lower casing the words has an upside of lowering the workload of NLP systems. For example, Boring and boring mean the same thing. Just storing <code class="language-plaintext highlighter-rouge">boring</code> would save space. However, this has exceptions.</p>
+<ol>
+  <li>It is difficult to differential Location <code class="language-plaintext highlighter-rouge">US</code> and Pronoun <code class="language-plaintext highlighter-rouge">us</code>, when lower-cased.</li>
+  <li>True-casing helps in understanding the emotion of text. For ex, Capitalized words would magnify the emotion of reviewer in a review. These features help the classifier.
+And so on..</li>
+</ol>
 
   </div><a class="u-url" href="/daily-report/slp100/2020/05/17/bpe-lemma.html" hidden></a>
 </article>
