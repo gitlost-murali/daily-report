@@ -110,13 +110,22 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#language-models">Language Models</a></li>
+<li class="toc-entry toc-h1"><a href="#language-models">Language Models</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#n-grams">N-Grams</a></li>
+</ul>
+</li>
 </ul><p>Work in Progress. Will be updated soon</p>
 
 <h1 id="language-models">
 <a class="anchor" href="#language-models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Language Models</h1>
 
-<p>Language Models quantify our assumptions on what should be the next word given a sequence by probability. LMs can also assign the probability to sentences. This helps in choosing which of the two sentences are more probable in occuring in the corpus.</p>
+<p>Briefly, Language Models, are <code class="language-plaintext highlighter-rouge">models</code> that assign probability to each possible next word given a sequence. LMs can also assign the probability to sentences. This helps in choosing which of the two sentences are more probable in occuring in the corpus.</p>
+
+<p>LMs are used in grammar correction and speech recognition systems to select the appropriate phrase or sequence. Statistical LMs make use of N-grams for obtaining probabilities.</p>
+
+<h2 id="n-grams">
+<a class="anchor" href="#n-grams" aria-hidden="true"><span class="octicon octicon-link"></span></a>N-Grams</h2>
 
 <p>N-Grams are sequence of n-words. Bi-grams, Tri-grams, etc.</p>
 

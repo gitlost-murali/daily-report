@@ -3,7 +3,7 @@
     
         "post0": {
             "title": "N-Grams & Language Models",
-            "content": "Work in Progress. Will be updated soon . Language Models . Language Models quantify our assumptions on what should be the next word given a sequence by probability. LMs can also assign the probability to sentences. This helps in choosing which of the two sentences are more probable in occuring in the corpus. . N-Grams are sequence of n-words. Bi-grams, Tri-grams, etc. . One way to predict the probability of next word is in the following way, . P(w/h)=P(w∩h)/P(h)P(w/h) = P(w ∩ h)/ P(h)P(w/h)=P(w∩h)/P(h) .",
+            "content": "Work in Progress. Will be updated soon . Language Models . Briefly, Language Models, are models that assign probability to each possible next word given a sequence. LMs can also assign the probability to sentences. This helps in choosing which of the two sentences are more probable in occuring in the corpus. . LMs are used in grammar correction and speech recognition systems to select the appropriate phrase or sequence. Statistical LMs make use of N-grams for obtaining probabilities. . N-Grams . N-Grams are sequence of n-words. Bi-grams, Tri-grams, etc. . One way to predict the probability of next word is in the following way, . P(w/h)=P(w∩h)/P(h)P(w/h) = P(w ∩ h)/ P(h)P(w/h)=P(w∩h)/P(h) .",
             "url": "https://gitlost-murali.github.io/daily-report/slp100/2020/05/19/ngram-lm.html",
             "relUrl": "/slp100/2020/05/19/ngram-lm.html",
             "date": " • May 19, 2020"
