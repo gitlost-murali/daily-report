@@ -41,6 +41,7 @@ $$ PP(W)\ =\ P(w_{1}...w_{N})^{-1/N}
 \newline PP(W)\ =\ ((1/10)^{N})^{-1/N}
 \newline PP(W)\ =\ 10$$
 
+{% include note.html content="We are considering unigram probabilities here." %}
 #### Instance-2
 
 Let's take another instance where the probabilities are different, say, 1st word has 91 occurences and others occur 1 time each. Now, perplexity would be low for a test sentence with all _1st word_ s.
