@@ -27,4 +27,23 @@ $$ PP(W) = P(w_{1}...w_{N})^{-1/N} $$
 
 Higher the probability of a test sentence, lower will be the perplexity considering the inverse. In other terms, maximizing probability would mean lowering perplexity.
 
-Intuitively, Perplexity can be thought of as weighted average branching factor of the language. The branching factor of a language stands is the no.of possible next words that can follow any word. If you have 10 words in a toy language, branching factor is 10.
+Intuitively, Perplexity can be thought of as __weighted average branching factor of the language__. The branching factor of a language is the no.of possible next words that can follow any word. So, in simple terms, Perplexity tells us, on an average, how many words can be expected for the next word.  
+
+### Understanding it through an example,
+
+#### Instance-1:
+
+If you have 10 words in a toy language and all the words have equal probability of occuring (in train and test set), then for a test sentence of length N, Perplexity = 10.
+
+Here's how, 
+
+$$ PP(W)\ =\ P(w_{1}...w_{N})^{-1/N} 
+\newline PP(W)\ =\ ((1/10)^{N})^{-1/N}
+\newline PP(W)\ =\ 10$$
+
+#### Instance-2
+
+Let's take another instance where the probabilities are different, say, 1st word has 91 occurences and others occur 1 time each. Now, perplexity would be low for a test sentence with all _1st word_ s.
+In this case, Perplexity will be low.
+
+Note that, in instance 1 & 2, branching factor is still 10. However, perplexity is different.
