@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Generalization and Zeroes | Murali Manohar Daily Tracker</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Generalization and Zeroes" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Perplexity vs N-gram size" />
+<meta property="og:description" content="Perplexity vs N-gram size" />
+<link rel="canonical" href="https://gitlost-murali.github.io/daily-report/slp100/2021/06/08/generalization-zeros.html" />
+<meta property="og:url" content="https://gitlost-murali.github.io/daily-report/slp100/2021/06/08/generalization-zeros.html" />
+<meta property="og:site_name" content="Murali Manohar Daily Tracker" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://gitlost-murali.github.io/daily-report/slp100/2021/06/08/generalization-zeros.html","@type":"BlogPosting","headline":"Generalization and Zeroes","dateModified":"2021-06-08T00:00:00-05:00","datePublished":"2021-06-08T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://gitlost-murali.github.io/daily-report/slp100/2021/06/08/generalization-zeros.html"},"description":"Perplexity vs N-gram size","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/daily-report/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gitlost-murali.github.io/daily-report/feed.xml" title="Murali Manohar | Daily Tracker" /><link rel="shortcut icon" type="image/x-icon" href="/daily-report/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/daily-report/">Murali Manohar | Daily Tracker</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/daily-report/about/">About Me</a><a class="page-link" href="/daily-report/search/">Search</a><a class="page-link" href="/daily-report/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Generalization and Zeroes</h1><p class="page-description">Perplexity vs N-gram size</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-06-08T00:00:00-05:00" itemprop="datePublished">
+        Jun 8, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/daily-report/categories/#slp100">slp100</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#generalization-and-zeroes">Generalization and Zeroes</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#perplexity-vs-coherence-vs-overfitting-vs-n-gram-size">Perplexity vs Coherence vs Overfitting vs N-Gram size</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#coherence-test">Coherence Test</a></li>
+<li class="toc-entry toc-h3"><a href="#unknown-words">Unknown words</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h1 id="generalization-and-zeroes">
+<a class="anchor" href="#generalization-and-zeroes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generalization and Zeroes</h1>
+
+<h2 id="perplexity-vs-coherence-vs-overfitting-vs-n-gram-size">
+<a class="anchor" href="#perplexity-vs-coherence-vs-overfitting-vs-n-gram-size" aria-hidden="true"><span class="octicon octicon-link"></span></a>Perplexity vs Coherence vs Overfitting vs N-Gram size</h2>
+
+<p>It is a known fact that Statistical models are heavily dependent on the training corpus. These models encode specific facts about the training corpus. An implication of this of could be overfitting. Before we talk about overfitting, let’s go through an exercise to understand how N-gram size impacts the coherence of sentences generated.</p>
+
+<p>The exercise is to generate sentences from different n-gram models by randomly generating each word.</p>
+
+<h3 id="coherence-test">
+<a class="anchor" href="#coherence-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coherence Test</h3>
+
+<p>In case of Uni-gram, we randomly generate each word. To perform this random sampling, we first generate a space (0 to 1) filled with words whose interval is proportional to their frequencies. Next, we randomly sample a number b/w 0-1 and pick the word whose interval has this generated number. We continue these steps until &lt;\/s&gt; is generated.</p>
+
+<ol>
+  <li>Sort the words based on frequency</li>
+  <li>Next, for each word, divide its frequency with total counts to get the percentage of space occupied by this word. This way, we generate intervals for each word. For more clarity, look at the example below.</li>
+  <li>Next, we randomly sample a number b/w 0-1 and pick the word whose interval has this generated number.</li>
+</ol>
+
+<p>For example, if you have 18000 total counts and <em>k</em> words.</p>
+
+<ol>
+  <li>After sorting, let’s say our top word (say $w_{1}$) has 9000 counts and next word ($w_{2}$) has 180 counts and so on…</li>
+  <li>Now for $w_{1}$, percentage = 9000/18000 = 0.5. So, the interval for this word is 0 - 0.5</li>
+  <li>For $w_{2}$, percentage = 180/18000 = 0.01. So, the interval for this word is 0.5 - 0.51
+….</li>
+</ol>
+
+<p>Once we have the intervals, if the randomly generated number is 0.43. Since 0.43 lies in the interval of $w_{1}$ (0-0.5), $w_{1}$ is randomly selected word.</p>
+
+<p>Incase of bigram, we start with &lt;s&gt; and pick one bigram (randomly) out of all the bigrams that start with &lt;s&gt;. We can use the same technique (used for unigram earlier) for randomly sampling an item. Say, the second word is <em>w</em>. Now, we look for bigrams that start with <em>w</em>. And so on.</p>
+
+<p>When we generate sentences with these n-gram models, it is found that,</p>
+<blockquote>
+  <p>Larger the value of N in N-Gram, greater the coherence of generated sentences.</p>
+</blockquote>
+
+<p>4-gram sentences are more coherent and look more like Shakespeare. If we look at the corpus statistics, N = 884647 &amp; V = 29006, possible bigrams are $V^{2}$ and 4-grams are $V^{4}$. There’s no way that all the 4-grams are shakespearean. If we look closely, N-Gram table will be mostly sparse. So, if our 1st 4-gram is <em>It cannot be but</em>, there are only few possible combinations. In most cases, this also means a single continuation.</p>
+
+<p>If we compare the sentences generated from N-grams trained on different domains, say Shakespeare and News domain, there will be little overlap b/w them. This points to the fact that statistical models are too dependent on the training corpus and useless for inference in a different domain. <strong>So, we must always ensure the training and inference set must have same genre and dailect too.</strong></p>
+
+<p>Despite getting the same genre &amp; dailect, models are still subject to the sparsity problem. Any n-gram/phrase that has occured many times in the training set will have a good probability estimate when occured in the test set. However, it is not possible for a corpus to encode all possible words or variations of phrases. Because of this, n-grams that should have non-zero probability will have zero-probability assigned to them.</p>
+
+<p>For example, training set has following details</p>
+
+<p>denied the rumours 5
+denied the speculations 2</p>
+
+<p>In test set, if we have the following phrases</p>
+
+<p>denied the loan
+denied the offer</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Model will incorrectly estimate that P(load</td>
+      <td>denied the) is <strong>0!</strong>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This leads to two problems.</p>
+
+<ol>
+  <li>This undermines the generalizability and usage of model in real-life applications.</li>
+  <li>If the probability of any word is 0, then probability of entire set is 0 (remember chain rule).</li>
+</ol>
+
+<h3 id="unknown-words">
+<a class="anchor" href="#unknown-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unknown words</h3>
+
+
+  </div><a class="u-url" href="/daily-report/slp100/2021/06/08/generalization-zeros.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/daily-report/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/daily-report/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/daily-report/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Writing down what I read/learn everyday</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gitlost-murali" title="gitlost-murali"><svg class="svg-icon grey"><use xlink:href="/daily-report/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/gitlostmurali" title="gitlostmurali"><svg class="svg-icon grey"><use xlink:href="/daily-report/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
