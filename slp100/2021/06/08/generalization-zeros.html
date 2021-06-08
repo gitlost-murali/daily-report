@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      4 min read
     
 </span></p>
 
@@ -159,7 +159,7 @@ window.onload = wrap_img;
   <p>Larger the value of N in N-Gram, greater the coherence of generated sentences.</p>
 </blockquote>
 
-<p>4-gram sentences are more coherent and look more like Shakespeare. If we look at the corpus statistics, N = 884647 &amp; V = 29006, possible bigrams are $V^{2}$ and 4-grams are $V^{4}$. There’s no way that all the 4-grams are shakespearean. If we look closely, N-Gram table will be mostly sparse. So, if our 1st 4-gram is <em>It cannot be but</em>, there are only few possible combinations. In most cases, this also means a single continuation.</p>
+<p>4-gram sentences are more coherent and look more like Shakespeare. If we look at the corpus statistics, N = 884647 &amp; V = 29006, possible bigrams are $V^{2}$ and 4-grams are $V^{4}$. There’s no way that all the 4-grams are shakespearean. If we look closely, N-Gram table will be mostly sparse. So, if our 1st 4-gram is <em>It cannot be but</em>, there are only few possible combinations. In most cases, this also means a single continuation. This is the reason why what’s looking like Shakespeare are actually Shakespeare sentences.</p>
 
 <p>If we compare the sentences generated from N-grams trained on different domains, say Shakespeare and News domain, there will be little overlap b/w them. This points to the fact that statistical models are too dependent on the training corpus and useless for inference in a different domain. <strong>So, we must always ensure the training and inference set must have same genre and dailect too.</strong></p>
 
@@ -175,14 +175,7 @@ denied the speculations 2</p>
 <p>denied the loan
 denied the offer</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Model will incorrectly estimate that P(load</td>
-      <td>denied the) is <strong>0!</strong>.</td>
-    </tr>
-  </tbody>
-</table>
+<p>Model will incorrectly estimate that P(load|denied the) is <strong>0!</strong>.</p>
 
 <p>This leads to two problems.</p>
 
@@ -191,9 +184,21 @@ denied the offer</p>
   <li>If the probability of any word is 0, then probability of entire set is 0 (remember chain rule).</li>
 </ol>
 
+<p>In the next post, we’ll discuss how to handle the issue of unseen n-grams through Smoothing.</p>
+
 <h3 id="unknown-words">
 <a class="anchor" href="#unknown-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unknown words</h3>
 
+<p>In the age of Social media, lingo is always evolving adding more words to the vocabulary. It is possible that a language model trained on one corpus can come across Out-of-Vocabulary(OOV) words in the test set. These words are often converted into &lt;UNK&gt; tokens. There are two ways to train probabilities for &lt;UNK&gt; token,</p>
+
+<ol>
+  <li>Come up with a pre-built lexicon or words and mask words that are not in the set with &lt;UNK&gt;.</li>
+  <li>Create the lexicon from training corpus (the usual way) and then mask words that have $freq&lt;k$ as <unk>.</unk>
+</li>
+  <li>After generating &lt;UNK&gt;s in training corpus in either way (Step 1 or 2), we can start training the LM.</li>
+</ol>
+
+<p>The choice of &lt;UNK&gt; assigning process has an impact on the metrics like Perplexity, If we have a small vocabulary, model can achieve less perplexity by predicting everything as &lt;UNK&gt; which anyway has higher probability. Note that, two LMs can only be compared when they have same vocabulary.</p>
 
   </div><a class="u-url" href="/daily-report/slp100/2021/06/08/generalization-zeros.html" hidden></a>
 </article>
