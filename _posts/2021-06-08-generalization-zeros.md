@@ -68,3 +68,5 @@ In the age of Social media, lingo is always evolving adding more words to the vo
 1. Come up with a pre-built lexicon or words and mask words that are not in the set with \<UNK\>.
 2. Create the lexicon from training corpus (the usual way) and then mask words that have $freq<k$ as <UNK>.
 3. After generating \<UNK\>s in training corpus in either way (Step 1 or 2), we can start training the LM.
+
+The choice of \<UNK\> assigning process has an impact on the metrics like Perplexity, If we have a small vocabulary, model can achieve less perplexity by predicting everything as \<UNK\> which anyway has higher probability. Note that, two LMs can only be compared when they have same vocabulary.
