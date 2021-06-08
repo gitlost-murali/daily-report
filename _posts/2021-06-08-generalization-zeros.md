@@ -36,7 +36,7 @@ Incase of bigram, we start with \<s\> and pick one bigram (randomly) out of all 
 When we generate sentences with these n-gram models, it is found that,
 > Larger the value of N in N-Gram, greater the coherence of generated sentences.
 
-4-gram sentences are more coherent and look more like Shakespeare. If we look at the corpus statistics, N = 884647 & V = 29006, possible bigrams are $V^{2}$ and 4-grams are $V^{4}$. There's no way that all the 4-grams are shakespearean. If we look closely, N-Gram table will be mostly sparse. So, if our 1st 4-gram is _It cannot be but_, there are only few possible combinations. In most cases, this also means a single continuation.
+4-gram sentences are more coherent and look more like Shakespeare. If we look at the corpus statistics, N = 884647 & V = 29006, possible bigrams are $V^{2}$ and 4-grams are $V^{4}$. There's no way that all the 4-grams are shakespearean. If we look closely, N-Gram table will be mostly sparse. So, if our 1st 4-gram is _It cannot be but_, there are only few possible combinations. In most cases, this also means a single continuation. This is the reason why what's looking like Shakespeare are actually Shakespeare sentences.
 
 If we compare the sentences generated from N-grams trained on different domains, say Shakespeare and News domain, there will be little overlap b/w them. This points to the fact that statistical models are too dependent on the training corpus and useless for inference in a different domain. __So, we must always ensure the training and inference set must have same genre and dailect too.__
 
@@ -52,12 +52,19 @@ In test set, if we have the following phrases
 denied the loan
 denied the offer
 
-Model will incorrectly estimate that P(load|denied the) is __0!__.
+Model will incorrectly estimate that P(load\|denied the) is __0!__.
 
 This leads to two problems.
 
 1. This undermines the generalizability and usage of model in real-life applications.
 2. If the probability of any word is 0, then probability of entire set is 0 (remember chain rule).
 
+In the next post, we'll discuss how to handle the issue of unseen n-grams through Smoothing.
+
 ### Unknown words
 
+In the age of Social media, lingo is always evolving adding more words to the vocabulary. It is possible that a language model trained on one corpus can come across Out-of-Vocabulary(OOV) words in the test set. These words are often converted into \<UNK\> tokens. There are two ways to train probabilities for \<UNK\> token,
+
+1. Come up with a pre-built lexicon or words and mask words that are not in the set with \<UNK\>.
+2. Create the lexicon from training corpus (the usual way) and then mask words that have $freq<k$ as <UNK>.
+3. After generating \<UNK\>s in training corpus in either way (Step 1 or 2), we can start training the LM.
