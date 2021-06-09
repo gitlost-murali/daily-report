@@ -61,15 +61,15 @@ __i__ | __want__ | __to__ | __eat__ | __chinese__ | __food__ | __lunch__ | __spe
 
 Before smoothing, the bigram probability of a word $w_{n}$ is 
 
-$$ P(w_{n}) = c(w_{n} w_{n-1})/c(w_{n-1}) $$
+$$ P(w_{n}) = \frac {c(w_{n} w_{n-1})} {c(w_{n-1})} $$
 
 After smoothing, i.e adding 1 to all bigram possibilities, probability is
 
-$$ P(w_{n}) = (c(w_{n} w_{n-1})+1)/(c(w_{n-1}) + V) $$
+$$ P(w_{n}) = \frac {c(w_{n} w_{n-1})+1} {c(w_{n-1}) + V} $$
 
 Now, our $c^{*}$ is
 
-$$ c^{*} = (c(w_{n} w_{n-1})+1) * c(w_{n-1})/(c(w_{n-1}) + V) $$
+$$ c^{*} = \frac {c(w_{n} w_{n-1})+1) * c(w_{n-1})} {c(w_{n-1}) + V} $$
 
 <p><img src="{{ site.baseurl }}/images/smoothing/smoothing-reconstructed-counts.png" alt="" title="Fig.2: Reconstructed (c*) Bigram counts from the sample corpus. Here, V = 1466 Reference: https://web.stanford.edu/~jurafsky/slp3/"></p>
 
@@ -80,3 +80,9 @@ $$ P(w_{n}) = c^{*}/c(w_{n-1}) $$
 <p><img src="{{ site.baseurl }}/images/smoothing/smoothing-bigram-probs.png" alt="" title="Fig-3: Bigram probabilties from the sample corpus. Reference: https://web.stanford.edu/~jurafsky/slp3/"></p>
 
 From Fig-1 & Fig-2, we could notice a big change in counts due to one-add smoothing. This is also visible in the probability space.
+
+### Add-k smoothing
+
+One-add smoothing resulted in sharp changes in the counts. An alternative is to use custom $k$ (preferably less than 1) that can be finetuned to a dev set.
+
+$$ P_{add-k}(w_{n}) = \frac {c(w_{n} w_{n-1})+k} {c(w_{n-1}) + k*V} $$
