@@ -24,7 +24,7 @@ Let's understand the application of Laplace smoothing through unigram probabilit
 
 The unigram probability of a word is 
 
-$$ P(w_{i}) = c/N \newline where N = no. of total words $$
+$ P(w_{i}) = c/N \newline where\ N\ =\ no.\ of\ total\ words\ $
 
 After smoothing, i.e adding 1 to all words, probability is
 
@@ -67,4 +67,8 @@ $$ P(w_{n}) = (c(w_{n} w_{n-1})+1)/(c(w_{n-1}) + V) $$
 
 Now, our $c^{*}$ is
 
-$$ c^{\*} =  $$
+$$ c^{*} = (c(w_{n} w_{n-1})+1) * c(w_{n-1})/(c(w_{n-1}) + V) $$
+
+The bigram probability of a word $w_{n}$ in terms of $c^{*}$ is,
+
+$$ P(w_{n}) = c^{*}/c(w_{n-1}) $$
