@@ -4,17 +4,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Tags | Murali Manohar Daily Tracker</title>
+<title>Smoothing | Murali Manohar Daily Tracker</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Tags" />
+<meta property="og:title" content="Smoothing" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Writing down what I read/learn everyday" />
-<meta property="og:description" content="Writing down what I read/learn everyday" />
-<link rel="canonical" href="https://gitlost-murali.github.io/daily-report/categories/" />
-<meta property="og:url" content="https://gitlost-murali.github.io/daily-report/categories/" />
+<meta name="description" content="Handling zero probability N-grams in test set" />
+<meta property="og:description" content="Handling zero probability N-grams in test set" />
+<link rel="canonical" href="https://gitlost-murali.github.io/daily-report/slp100/2021/06/09/smoothing.html" />
+<meta property="og:url" content="https://gitlost-murali.github.io/daily-report/slp100/2021/06/09/smoothing.html" />
 <meta property="og:site_name" content="Murali Manohar Daily Tracker" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-09T00:00:00-05:00" />
 <script type="application/ld+json">
-{"url":"https://gitlost-murali.github.io/daily-report/categories/","@type":"WebPage","headline":"Tags","description":"Writing down what I read/learn everyday","@context":"https://schema.org"}</script>
+{"url":"https://gitlost-murali.github.io/daily-report/slp100/2021/06/09/smoothing.html","@type":"BlogPosting","headline":"Smoothing","dateModified":"2021-06-09T00:00:00-05:00","datePublished":"2021-06-09T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://gitlost-murali.github.io/daily-report/slp100/2021/06/09/smoothing.html"},"description":"Handling zero probability N-grams in test set","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/daily-report/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gitlost-murali.github.io/daily-report/feed.xml" title="Murali Manohar | Daily Tracker" /><link rel="shortcut icon" type="image/x-icon" href="/daily-report/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -82,66 +84,57 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Smoothing</h1><p class="page-description">Handling zero probability N-grams in test set</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-06-09T00:00:00-05:00" itemprop="datePublished">
+        Jun 9, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
 
-<h2>Contents</h2>
-
-  
-  
-  
-
-  <ul>
-  
-    <li><a href="#slp100">slp100</a></li>
-  
-  </ul>
-
-  
-      <h3 id ="slp100"><i class="fas fa-tags category-tags-icon"></i></i> slp100</h3>
-      <a name="slp100"></a>
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <article class="archive-item">
-          <p class="post-meta post-meta-title"><a class="page-meta" href="/daily-report/slp100/2021/06/09/smoothing.html">Smoothing</a>  • Jun 9, 2021</p>
-        </article>
+        <a class="category-tags-link" href="/daily-report/categories/#slp100">slp100</a>
         
       
-        <article class="archive-item">
-          <p class="post-meta post-meta-title"><a class="page-meta" href="/daily-report/slp100/2021/06/08/generalization-zeros.html">Generalization and Zeroes</a>  • Jun 8, 2021</p>
-        </article>
-        
-      
-        <article class="archive-item">
-          <p class="post-meta post-meta-title"><a class="page-meta" href="/daily-report/slp100/2021/06/07/evaluating-lms.html">Evaluating Language Models</a>  • Jun 7, 2021</p>
-        </article>
-        
-      
-        <article class="archive-item">
-          <p class="post-meta post-meta-title"><a class="page-meta" href="/daily-report/slp100/2021/06/06/ngram-lm.html">Language Models - N-Grams & Markov assumptions & Maximum Likelihood</a>  • Jun 6, 2021</p>
-        </article>
-        
-      
-        <article class="archive-item">
-          <p class="post-meta post-meta-title"><a class="page-meta" href="/daily-report/slp100/2021/05/18/edit-dist.html">Minimum Edit Distance & Backtracing alignment</a>  • May 18, 2021</p>
-        </article>
-        
-      
-        <article class="archive-item">
-          <p class="post-meta post-meta-title"><a class="page-meta" href="/daily-report/slp100/2021/05/17/bpe-lemma.html">BPE algo,  Lemmatization</a>  • May 17, 2021</p>
-        </article>
-        
-      
-        <article class="archive-item">
-          <p class="post-meta post-meta-title"><a class="page-meta" href="/daily-report/slp100/2021/05/16/tokenization.html">Tokenization</a>  • May 16, 2021</p>
-        </article>
-        
-      
-  
+      </p>
+    
 
+    </header>
 
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#smoothing">Smoothing</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#laplace-smoothing">Laplace smoothing</a></li>
+</ul>
+</li>
+</ul><h1 id="smoothing">
+<a class="anchor" href="#smoothing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Smoothing</h1>
 
+<p>LM fails in test set when a known word occurs in an unknown context. We will discuss how to handle this issue in this blog.</p>
 
+<div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>If any of it sounds alien, refer to the previous blog.
 </div>
+
+<p>If any word has a zero probability in the test set, then probability of entire set becomes zero. To avoid this, smoothing algoritms shave off the probability mass from high frequency words and give it to the zero probability ones.</p>
+
+<h2 id="laplace-smoothing">
+<a class="anchor" href="#laplace-smoothing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Laplace smoothing</h2>
+
+<p>This is the most straightforward approach where add 1 to all bigram counts. Laplace smoothing is only used as baselines but not employed in any modern LM systems.</p>
+
+
+  </div><a class="u-url" href="/daily-report/slp100/2021/06/09/smoothing.html" hidden></a>
+</article>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/daily-report/"></data>
